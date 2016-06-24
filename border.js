@@ -1,4 +1,4 @@
-var Border = function(heightFirst) {
+var Border = function(collisionFunc,drawScore,heightFirst) {
     if (heightFirst) {
         this.heightFirst = heightFirst;
         this.indent = 120;
@@ -8,6 +8,9 @@ var Border = function(heightFirst) {
     this.stepPx = 2;
     this.poleWidth = parseInt($('.game').width()) + 50;
     this.color = Helper.randowColor();
+    this.collisionFunc = collisionFunc;
+    this.score = 0;
+    this.drawScore = drawScore;
 }
 
 Border.prototype.setRandomHeight = function() {
@@ -49,6 +52,7 @@ Border.prototype.move = function() {
     $(this.borders).css({
         marginRight: '+=' + this.stepPx + 'px',
     });
+    this.chackCollision();
     this.remove();
 }
 
@@ -59,5 +63,35 @@ Border.prototype.remove = function() {
         this.setRandomHeight();
         this.color = Helper.randowColor();
         this.draw();
+        this.score++;
+        this.drawScore(this.score);
     }
+}
+
+Border.prototype.chackCollision = function() {
+    var bird = {
+        x: $('.bird').offset().left,
+        y: $('.bird').offset().top,
+        width: $('.bird').width() - 20,
+        height: $('.bird').height() - 20
+    };
+    
+    var borderTop = {
+        x: $('.border-top').offset().left,
+        y: $('.border-top').offset().top,
+        width: $('.border-top').width(),
+        height: $('.border-top').height()
+    };
+    
+    var borderBottom = {
+        x: $('.border-bottom').offset().left,
+        y: $('.border-bottom').offset().top,
+        width: $('.border-bottom').width(),
+        height: $('.border-bottom').height()
+    };
+    
+    if (Helper.MacroCollision(bird,borderTop))
+        this.collisionFunc();
+    else if (Helper.MacroCollision(bird,borderBottom))
+        this.collisionFunc();
 }

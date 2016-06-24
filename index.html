@@ -9,6 +9,7 @@
       href="image/Flappy_Bird_icon.png">
     <link rel="stylesheet" href="style.css">
     <script src="jquery.js"></script>
+    <script src="jquery-collision.min.js"></script>
     <script src="helper.js"></script>
     <script src="border.js"></script>
     <script src="bird.js"></script>
@@ -16,22 +17,13 @@
 </head>
 <body>
 <div class="game">
-    <div class="bird">
-        
-    </div>
-
-<!--
-    <div class="borders">
-        <div class="border-top border">
-
-        </div>
-        <div class="border-bottom border">
-
-        </div>
-    </div>
--->
+    <img src="image/bird.png" alt="" class="bird">
 </div>
-<p class="brend">Flappy Bird</p>
-
+<div class="gameover-box">
+    <p>Game over</p>
+    <p>Score: <span class="score-count">0</span></p>
+    <div class="restart">Restart</div>
+</div>
+<p class="brend">Flappy Bird <span class="score">Score: <span class="score-count">0</span> <span class="high-text">High</span> <span class="score-high">0</span></span></p>
 </body>
 </html>
