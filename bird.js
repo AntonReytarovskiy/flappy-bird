@@ -1,5 +1,4 @@
 var Bird = function(gameOver) {
-    $(window).keydown(this.keydown.bind(this));
     $(window).keyup(this.keyup.bind(this));
     this.isPress = false;
     this.gameOver = gameOver;
@@ -7,9 +6,10 @@ var Bird = function(gameOver) {
 }
 
 Bird.prototype.start = function() {
+    $(window).keydown(this.keydown.bind(this));
     this.bird = $('.bird');
     $(this.bird).offset({top: 100});
-    this.downInterval = setInterval(this.down.bind(this),10);
+    this.downInterval = setInterval(this.down.bind(this),7);
 }
 
 Bird.prototype.down = function() {
@@ -18,7 +18,7 @@ Bird.prototype.down = function() {
             transform: 'rotate(+20deg)',
             marginTop: '+=2px',
         });
-        if ($('.bird').offset().top > $('.game').height() - 35)
+        if ($('.bird').offset().top > $('.game').height() - 30)
             this.gameOver();
     }
 }
@@ -31,7 +31,7 @@ Bird.prototype.keydown = function(event) {
         });
         if ($(this.bird).offset().top > 0)
         $(this.bird).animate({
-            marginTop: '-=50px',
+            marginTop: '-=55px',
         },200,function() {
             this.isPress = false;
         }.bind(this));

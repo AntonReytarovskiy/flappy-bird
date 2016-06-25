@@ -1,10 +1,10 @@
 var intervalId;
 var bird = new Bird(gameOver);
-var border = new Border(gameOver,drawScore);
+var border;
 var highScore = 0;
 $(document).ready(function() {
-    var border = new Border(gameOver,drawScore);
-    //$('.restart').bind('click',restart);
+    border = new Border(gameOver,drawScore);
+    $('.restart').bind('click',restart);
     border.draw();
     bird.start();
     intervalId = setInterval(function() {
@@ -12,20 +12,24 @@ $(document).ready(function() {
     },10);
 });
 
-//function restart() {
-//    border.remove();
-//    $('.gameover-box').hide(200);
-//    bird.start();
-//    intervalId = setInterval(function() {
-//        border.move();
-//    },10);
-//    bird.start();
-//}
+function restart() {
+    drawScore(0);
+    border.score = 0;
+    $('.borders').remove();
+    $('.gameover-box').hide(200);
+    bird.start();
+    border.setRandomHeight();
+    border.draw();
+    drawScore(0);
+    intervalId = setInterval(function() {
+        border.move();
+    },10);
+}
 
 function gameOver() {
     clearInterval(intervalId);
     bird.stop();
-//    $('.gameover-box').show(300);
+    $('.gameover-box').show(300);
 }
 
 function drawScore(score) {

@@ -72,22 +72,22 @@ Border.prototype.chackCollision = function() {
     var bird = {
         x: $('.bird').offset().left,
         y: $('.bird').offset().top,
-        width: $('.bird').width() - 20,
-        height: $('.bird').height() - 20
+        width: $('.bird').width(),
+        height: $('.bird').height()
     };
     
     var borderTop = {
         x: $('.border-top').offset().left,
         y: $('.border-top').offset().top,
-        width: $('.border-top').width(),
-        height: $('.border-top').height()
+        width: $('.border-top').width() - 10,
+        height: $('.border-top').height() - 10
     };
     
     var borderBottom = {
         x: $('.border-bottom').offset().left,
         y: $('.border-bottom').offset().top,
-        width: $('.border-bottom').width(),
-        height: $('.border-bottom').height()
+        width: $('.border-bottom').width() - 10,
+        height: $('.border-bottom').height() - 10
     };
     
     if (Helper.MacroCollision(bird,borderTop))

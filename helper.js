@@ -24,6 +24,7 @@ Helper.randowColor = function() {
 
 Helper.KEY_CODE = {
     UP: 38,
+    Left: 37,
 };
 
 Helper.MacroCollision = function(obj1,obj2){
